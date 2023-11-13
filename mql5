@@ -1,0 +1,74 @@
+Here is a sample code based on the given terms of reference:
+
+```mql5
+<code>
+// EA Gold Stuff mt5
+
+// Import required libraries and indicators
+#include <Trade\Trade.mqh>
+#include <GoldStuff.mqh>
+
+// Define global variables
+CTrade trade;
+CGoldStuff goldStuff;
+
+// Initialization function
+int OnInit()
+{
+    // Initialize trade object
+        trade.SetExpertMagicNumber(123456); // Change the magic number if required
+
+                // Initialize Gold Stuff indicator
+                    goldStuff.Create();
+
+                            // Attach indicator to the chart
+                                goldStuff.AttachToChart(Symbol(), PERIOD_CURRENT);
+
+                                        // Set indicator parameters
+                                            goldStuff.SetParameter('Parameter1', 123); // Change the parameter values if required
+                                                goldStuff.SetParameter('Parameter2', 456);
+
+                                                        return(INIT_SUCCEEDED);
+                                                        }
+
+                                                        // Deinitialization function
+                                                        void OnDeinit(const int reason)
+                                                        {
+                                                            // Remove indicator from the chart
+                                                                goldStuff.DetachFromChart();
+                                                                }
+
+                                                                // Execution function
+                                                                void OnTick()
+                                                                {
+                                                                    // Check if indicator signals are available
+                                                                        if (goldStuff.SignalsAvailable())
+                                                                            {
+                                                                                    // Get the latest signal from the indicator
+                                                                                            ENUM_SIGNAL signal = goldStuff.GetSignal();
+                                                                                                    
+                                                                                                            // Execute trading order based on the signal
+                                                                                                                    if (signal == SIGNAL_BUY)
+                                                                                                                            {
+                                                                                                                                        trade.Buy(Symbol(), 0.1); // Change the lot size if required
+                                                                                                                                                }
+                                                                                                                                                        else if (signal == SIGNAL_SELL)
+                                                                                                                                                                {
+                                                                                                                                                                            trade.Sell(Symbol(), 0.1);
+                                                                                                                                                                                    }
+                                                                                                                                                                                        }
+                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                        // Error handling function
+                                                                                                                                                                                        void OnTradeError(const int error)
+                                                                                                                                                                                        {
+                                                                                                                                                                                            // Handle trade errors here
+                                                                                                                                                                                                Print('Trade error:', error);
+                                                                                                                                                                                                }
+                                                                                                                                                                                                
+                                                                                                                                                                                                // Other functions and event handlers can be added as required
+                                                                                                                                                                                                
+                                                                                                                                                                                                </code>
+                                                                                                                                                                                                ```
+                                                                                                                                                                                                
+                                                                                                                                                                                                Please note that this is a basic example and additional code may be required to fully implement all the requirements mentioned in the terms of reference.
